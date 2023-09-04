@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1.1 HTML and CSS Demo Page</title>
+</head>
+<!-- CSS -->
+<style>
+    body {background-color: rgb(1, 23, 43);}
+    h1 {color: grey}
+    h2 {color: grey;}
+    a  {color: black;
+        background-color: whitesmoke;
+        width: 20px;
+        padding: 1px;
+        border: 3px solid pink;
+        margin: 0;
+    }
+    p {color: grey}
+    ul {color: grey}
+    button {color:black;
+            background-color: whitesmoke;
+            padding: 1px;
+            border: 3px solid pink;
+            margin: 0;
+    }
+    figure {color: grey}
+    footer {color: grey}
+</style>
+
+<body>
+    <!-- Code goes here! -->
+    <article>
+        <h1>Title of Article about Interesting Visualisation</h1>
+        <h2> Avineash Murely</h2>
+        
+        <p>
+            <a href = "Lab1.1.html" > Lab 1</a>
+            <a href = "Lab1.2.html" > Lab 2</a>
+            <a href = "Lab1.3.html" > Lab 3</a>
+        </p>
+
+        <h2>Pets and the Pandemic</h2>
+            <p>A report from Animal Medicines Australia (AMA) has found that many Australians took the opportunity to introduce a pet into their household during the pandemic. Their survey indicated that there was a significant increase in the percent of households taking in a new dog, fish or bird. Their research also indicated that pets had a number of positive influences on their lives such as:</p>
+            <ul>
+                <li>companionship</li>
+                <li>better mental health</li>
+                <li>joy and happiness.</li>
+            </ul>
+
+            <div>      
+                <button class="button1" onclick="show('pets2019.png', 'Fig 1.Percent of most popular pet owned by Australians in 2019','pets2019')">2019</button>
+                <button class="button2" onclick="show('pets2021.png', 'Fig 2.Percent of most popular pet owned by Australians in 2019','pets2019')">2021</button>
+                <button class="button3" onclick="show('pets1921.png', 'Fig 3.Percent of most popular pet owned by Australians in 2019','pets2019')">2019 vs 2021</button>
+            </div>
+
+            <figure>
+                <img id="ChartImg" style="width:50%;" style="display:none">
+                <figcaption id="ChartCap"></figcaption>
+            </figure>
+
+            <script>
+                function show(Image,ImgDesc,ImgAlt){
+                    document.getElementById('ChartImg').src=Image
+                    document.getElementById('ChartImg').alt=ImgAlt
+                    document.getElementById('ChartCap').innerHTML=ImgDesc
+                    document.getElementById('ChartImg').style.display='block';
+                }
+            </script>
+
+            <p>With the increase in pet ownership the AMA are encouraging policy makers to consider the needs of companion animals and their owners when considering rental, strata and body corporate regulations are well as accepting animals in public places and transport.</p>
+    </article>
+
+    <footer>COS300045 Data Visualisation <br>Semester 4 2023</br></footer>
+    
+</body>
+
+</html>

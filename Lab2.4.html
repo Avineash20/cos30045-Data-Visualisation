@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Data Visualisation">
+    <meta name="Keywords" content="HTML, CSS, D3">
+    <meta name="author" content="Avineash Murely">
+ 
+    <title>Task 2.4 D3 Loading Data</title>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<style>
+    body {background-color: rgb(238, 237, 237);}
+    h1 {color: purple;}
+    h2 {color: purple;}
+    a {color: rgb(128, 7, 134);
+       background-color: aliceblue;
+       width: 20px;
+       padding: 1px;
+       border: 3px solid pink;
+       margin: 0;
+        }
+    p {color: purple;}
+    footer {color:purple;
+            background-color: aliceblue;
+            border:3px solid purple;
+            width: auto;     
+    }
+
+</style>
+
+<body>
+    
+        <h1>Drawing with Data - from CSV</h1>
+        <h2>Avineash Murely</h2>
+
+        <a href="Lab2.1.html">Lab2.1</a>
+        <a href="Lab2.2.html">Lab2.2</a>
+        <a href="Lab2.3.html">Lab2.3</a>
+        <a href="Lab2.4.html">Lab2.4</a>
+        <a href="Lab2.5.html">Lab2.5</a>
+
+<script>
+// workings of BrownBoi
+        d3.select("body")
+          .append("p")
+          
+
+       var w = 600;
+        var h = 200;
+        var padding = 1;
+
+        function barChart(){
+           
+
+            svg.selectAll("rect")
+               .data(wombatSightings)
+               .enter()
+               .append("rect")
+               .attr("x", function(d, i){
+                    return i * (w / wombatSightings.length);
+               })
+               .attr("y", function(d){
+                    return h - (d.wombats * 4);
+               })
+               .attr("width", (w / wombatSightings.length) - padding)
+               .attr("height", function(d){
+                    return d.wombats * 4; 
+               })
+               .style("fill", function(d){
+                    if(d.wombats < 10){
+                        return d3.color("green");
+                    }else{
+                        return d3.color("lightgreen");
+                    }
+               })
+        }
+        d3.csv("Task_2.4_data.csv").then(function(data){
+            console.log(data);
+            wombatSightings = data;
+
+            barChart(wombatSightings);
+        });
+
+        var svg = d3.select("p")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h)
+                    .style("outline", "solid thick purple");   
+</script>
+<!-- THIS IS THE ORIGINAL BAR CLOSEMENT -->
+<br>
+<bf>
+            <footer>COS40035 Data Visualisation<br>Avineash Murely</footer>
+</body>
+</html>
+
+

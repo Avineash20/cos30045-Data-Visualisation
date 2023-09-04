@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Data Visualisation">
+    <meta name="Keywords" content="HTML, CSS, D3">
+    <meta name="author" content="Avineash Murely">
+ 
+    <title>Task 2.2 D3 Data Binding</title>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+
+</head>
+
+<style>
+    body {background-color: rgb(238, 237, 237);}
+    h1 {color: purple;}
+    h2 {color: purple;}
+    a {color: rgb(128, 7, 134);
+       background-color: aliceblue;
+       width: 20px;
+       padding: 1px;
+       border: 3px solid pink;
+       margin: 0;
+        }
+    p {color: purple;}
+    footer {color:purple;
+            background-color: aliceblue;
+            border:3px solid purple;
+            width: auto;     
+    }
+
+</style>
+
+<body>
+    
+        <h1>Drawing with Data - Bar Chart</h1>
+        <h2>Avineash Murely</h2>
+
+        <a href="Lab2.1.html">Lab2.1</a>
+        <a href="Lab2.2.html">Lab2.2</a>
+        <a href="Lab2.3.html">Lab2.3</a>
+        <a href="Lab2.4.html">Lab2.4</a>
+        <a href="Lab2.5.html">Lab2.5</a>
+<p></p>
+
+        <script>
+            // Define the width and height of the SVG canvas
+            var w = 500;
+            var h = 150;
+            
+            // Define a dataset of numbers
+            var dataset = [14, 5, 26, 23, 9, 10, 28, 3, 7, 13];
+    
+            // Create a color scale based on the dataset
+            var colorScale = d3.scaleLinear()
+                .domain([0, d3.max(dataset)])
+                .range(["lightgreen", "green"]);
+    
+            // Create an SVG element and set its width and height
+            var svg = d3.select("body")
+                .append("svg")
+                .attr("width", w)
+                .attr("height", h);
+    
+            // Define padding for the bars
+            var padding = 1;
+    
+            // Create rectangles for the bar chart
+            svg.selectAll("rect")
+                .data(dataset)
+                .enter()
+                .append("rect")
+                .attr("x", function(d, i){
+                    return (w / dataset.length) * i;
+                })
+                .attr("y", function(d){
+                    return h - d * 4;
+                })
+                .attr("width", w / dataset.length - padding)
+                .attr("height", function(d){
+                    return d * 4;
+                })
+                .attr("fill", function(d){
+                    return colorScale(d);
+                });
+    
+            // Add text labels to the bars
+            svg.selectAll("text")
+                .data(dataset)
+                .enter()
+                .append("text")
+                .text(function(d){
+                    return d;
+                })
+                .attr("x", function(d, i){
+                    if (d < 10) {
+                        return i * (w / dataset.length) + (w / dataset.length - padding) / 2 - 4;
+                    }
+                    return i * (w / dataset.length) + (w / dataset.length - padding) / 2 - 8;
+                })
+                .attr("y", function(d){
+                    if (d > 5) {
+                        return h - d * 4 + 15;
+                    }
+                    return h - d * 4 - 3;
+                })
+                .attr("text-anchor", "right") // Center-align the text
+                .attr("dy", "auto"); // Shift the text upward a bit
+        </script>
+
+        <br>
+        <bf>
+            <footer>COS40035 Data Visualisation<br>Avineash Murely</footer>
+</body>
+</html>
+
+
