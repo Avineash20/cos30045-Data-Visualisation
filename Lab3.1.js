@@ -77,7 +77,7 @@ function init(){
                 return "red"
             } 
             if(d[0]==min_X){
-              return "yellow"
+              return "green"
           } 
        })
 

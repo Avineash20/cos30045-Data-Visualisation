@@ -101,11 +101,11 @@ function init(){
 
         // adding axis 
         var xAxis = d3.axisBottom() //create x axis
-                      .ticks(5)
+                      .ticks(15)
                       .scale(xScale);  //scale is according to the x scale
 
         var yAxis = d3.axisLeft()
-                      .ticks(5)
+                      .ticks(4)
                       .scale(yScale);
     
         svg.append("g") //place axis svg at bottom to not interfere with other svgs
