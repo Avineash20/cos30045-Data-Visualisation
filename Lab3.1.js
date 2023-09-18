@@ -1,7 +1,7 @@
 function init(){
 
-    var w = 750;
-    var h = 250;
+    var w = 1000;
+    var h = 450;
     var padding = 70;
 
     // d3 block
