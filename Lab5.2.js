@@ -34,7 +34,7 @@ function init() {
         .attr("height", function (d) {
             return h - yScale(d);
         })
-        .attr("fill", "teal");
+        .attr("fill", "lightgreen");
 
     svg.selectAll("text")
         .data(dataset)
@@ -54,7 +54,7 @@ function init() {
         .attr("fill", "purple");
 
     // Button
-    d3.select("#update") // Corrected the button selector
+    d3.select("#updateButton") // Corrected the button selector
         .on("click", function () {
             var numValues = dataset.length;
             dataset = [];
@@ -88,7 +88,7 @@ function init() {
                 });
         });
 
-        d3.select("#trans1") // Corrected the button selector
+        d3.select("#trans_Button1") // Corrected the button selector
         .on("click", function () {
             var numValues = dataset.length;
             dataset = [];
@@ -125,7 +125,7 @@ function init() {
         });
 
 
-        d3.select("#trans2") // Corrected the button selector
+        d3.select("#trans_Button2") // Corrected the button selector
         .on("click", function () {
             var numValues = dataset.length;
             dataset = [];
@@ -138,7 +138,8 @@ function init() {
             svg.selectAll("rect")
                 .data(dataset)
                 .transition()
-                .duration()
+                .duration(2000)
+                .ease(d3.easeElasticOut)
                 .delay(function(d,i){
                     return i/dataset.length * 1000;
                 })

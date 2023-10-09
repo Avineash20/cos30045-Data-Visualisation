@@ -5,13 +5,10 @@
     <meta name="description" content="Data Visualisation">
     <meta name="Keywords" content="HTML, CSS, D3">
     <meta name="author" content="Avineash Murely">
- 
-    <title>Task 5.2 Transition</title>
-    <!-- JavaScript -->
-    <script src="Lab5.2.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="Lab6.2.js"></script>
+    <title>6.2 Sort</title>
 </head>
-
 <style>
     body {background-color: rgb(238, 237, 237);}
     h1 {color: purple;}
@@ -31,27 +28,19 @@
     }
 
 </style>
-
 <body>
-    <h1>Transition - Bar Chart</h1>
+    <h1>Bar Chart with Mouse Over and Sort</h1>
     <h2>Avineash Murely</h2>
-
     <a href ="index.html" > Menu </a>
-    <a href="Lab5.1.html">Lab5.1</a>
-    <a href="Lab5.2.html">Lab5.2</a>
-    <a href="Lab5.3.html">Lab5.3</a>
-<p> 
-    <!-- Button -->
-    <button id="updateButton" class ="update-Button">Update Once</button>
-    <button id="trans_Button1" class ="trans-Button1">Transition Button 1</button>
-    <button id="trans_Button2" class ="trans-Button2">Transition Button 2</button>
-
-    <div id="chart-container">
-        <!-- The chart will be appended here -->
+        <a href="Lab6.1.html">Lab6.1</a>
+        <a href="Lab6.2.html">Lab6.2</a>
+<p>
+    <div>
+        <button id = "add">Add</button>
+        <button id = "remove">Remove</button>
+        <button class ="btn-sort">Sort</button>
     </div>
+    <div id="chart"></div>
 </p>
-    <!-- Footer Information -->
-    <footer>COS40035 Data Visualisation<br>Avineash Murely</footer>
-
 </body>
 </html>

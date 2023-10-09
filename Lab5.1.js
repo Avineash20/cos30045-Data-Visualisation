@@ -34,7 +34,7 @@ function init() {
         .attr("height", function (d) {
             return h - yScale(d);
         })
-        .attr("fill", "teal");
+        .attr("fill", "lightgreen");
 
     svg.selectAll("text")
         .data(dataset)

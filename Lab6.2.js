@@ -1,0 +1,153 @@
+function init() {
+    // Define the dimensions and size for the SVG
+    var w = 500;
+    var h = 300;
+  var choice = -1; //choice of sorting, ascending or descending
+    var dataset = [24, 8, 9, 15, 21, 7, 4, 13, 21, 13, 25];
+    var xScale = d3.scaleBand() //used for ordinal data where the data is categorical
+                   .domain(d3.range(dataset.length)) // returns an array 0 to length -1
+                   .rangeRound([0,w])//Round add crisp to rec -> round x value
+                   .paddingInner(0.05) //set padding within funciton
+    var yScale = d3.scaleLinear()
+                   .domain([0, d3.max(dataset)])
+                   .range([h,0]);
+    var svg = d3.select("body")
+                .append("svg") 
+                .attr ("width", w) //variable w and h will be the value for such attributes
+                .attr ("height", h) // add some margin for axis
+                .attr ("id","chart");
+    svg.selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x",function(d,i){   //each bar is 20 px wide so for it to be space in between we put a num > 20 as x position of each bar and i is index from 0 to dataset.length
+            return xScale(i) ;
+        })
+        .attr("y",function(d){ //y coordinate is from the top left of the rec
+            return yScale(d); //
+        }) 
+        .attr("width",xScale.bandwidth()) //- bar padding so that they are not next to each other
+        .attr("height", function(d){
+            return h-yScale(d) ; //y is top left position of bar, height calculate how much the bar needs to go down
+        })
+        .attr("fill","lightgreen")
+        .on("mouseover",function(event,d){ //this function takes 2 arg, event = current event,d is current dataset
+            var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth()/3;//convert x to floating point num
+            var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
+            svg.append("text") //we append text to tag svg no need enter because there is no dataset to bind the text to
+                .attr("id","tooltip")
+                .attr("x",xPosition)
+                .attr("y",yPosition)
+                .text(d);
+            d3.select(this)
+                .transition()
+                .attr("fill","lightblue");
+        })
+        .on("mouseout",function(d){
+            d3.select(this)
+                .transition()
+                .duration(250)
+                .attr("fill","pink");
+            d3.select("#tooltip").remove();
+            
+        });
+
+        
+        
+    //button 1
+    d3.select("#add")
+        .on("click",function(){
+            
+            var maxValue = 25;
+            
+            var newNumber = Math.floor(Math.random()*maxValue); //missing bar = 0
+                dataset.push(newNumber);
+            xScale.domain(d3.range(dataset.length))
+            var bars = svg.selectAll("rect")
+                .data(dataset);
+            bars.enter()
+                .append("rect")
+                .merge(bars)
+                .attr("x",function(d,i){
+                    return xScale(i)
+                })
+                .attr("y",function(d){
+                    return yScale(d)
+                })
+                .attr("width",xScale.bandwidth())
+                .attr("height",function(d){
+                    return h-yScale(d);
+                })
+                .attr("fill","lightgreen")
+                .on("mouseover",function(event,d){ //this function takes 2 arg, event = current event,d is current dataset
+                    var xPosition = parseFloat(d3.select(this).attr("x")) //convert x to floating point num
+                    var yPosition = parseFloat(d3.select(this).attr("y"))
+                    svg.append("text")
+                        .attr("id","tooltip") //id for easy removal in moseout below
+                        .attr("x",xPosition+(xScale.bandwidth()/2)-10)
+                        .attr("y",yPosition+15)
+                        .text(d);
+                    d3.select(this)
+                        .transition()
+                        .attr("fill","lightblue");
+                })
+                .on("mouseout",function(d){
+                    d3.select(this)
+                        .transition()
+                        .attr("fill","lightgreen");
+                    d3.select("#tooltip").remove();
+                    
+                });
+        })
+    //button 2
+    d3.select("#remove")
+        .on("click",function(){
+        dataset.pop(); //remove last element
+        var bars= svg.selectAll("rect")
+            .data(dataset);
+        bars.exit()
+            .transition()
+            .duration(500)
+            .attr("x",w) //make it goes to end of svg
+            .remove();
+       
+    }); 
+
+    ///////////////////////////
+    var sortBars = function(){
+        if(choice == 1) //ascending order
+        {
+            svg.selectAll("rect")
+                .sort(function(a,b){
+                    return d3.ascending(a,b);
+                })
+                .transition() //tranistion when sorting
+                .delay(300)
+                .duration(400)
+                .attr("x",function(d,i){
+                    return xScale(i);
+                });
+        }
+        else{ //descending order
+            svg.selectAll("rect")
+                .sort(function(a,b){
+                    return d3.descending(a,b);
+                })
+                .transition() //tranistion when sorting
+                .duration(500)
+                .ease(d3.easeCircleIn)
+                .attr("x",function(d,i){
+                    return xScale(i);
+                });
+        }
+    }
+
+    d3.select(".btn-sort")
+        .on("click",function(){ //when the sort button is clicked
+            choice = choice * -1; //toggle the choice
+            sortBars();
+        })
+    ////////////////////////
+   
+}
+window.onload = init;
