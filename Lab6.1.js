@@ -33,11 +33,11 @@ function init() {
         .attr("fill","lightgreen")
         .on("mouseover",function(event,d){ //this function takes 2 arg, event = current event,d is current dataset
             var xPosition = parseFloat(d3.select(this).attr("x")) + xScale.bandwidth()/3;//convert x to floating point num
-            var yPosition = parseFloat(d3.select(this).attr("y")) + 14;
+            var yPosition = parseFloat(d3.select(this).attr("y")) - 2;
             svg.append("text") //we append text to tag svg no need enter because there is no dataset to bind the text to
                 .attr("id","tooltip")
                 .attr("x",xPosition)
-                .attr("y",yPosition)
+                .attr("y",yPosition) 
                 .text(d);
             d3.select(this)
                 .transition()
@@ -47,7 +47,7 @@ function init() {
             d3.select(this)
                 .transition()
                 .duration(250)
-                .attr("fill","pink");
+                .attr("fill","lightgreen");
             d3.select("#tooltip").remove();
             
         });
@@ -85,7 +85,8 @@ function init() {
                     svg.append("text")
                         .attr("id","tooltip") //id for easy removal in moseout below
                         .attr("x",xPosition+(xScale.bandwidth()/2)-10)
-                        .attr("y",yPosition+15)
+                       .attr("y",yPosition-2) 
+                        
                         .text(d);
                     d3.select(this)
                         .transition()
@@ -110,7 +111,6 @@ function init() {
             .duration(500)
             .attr("x",w) //make it goes to end of svg
             .remove();
-       
     }); 
 }
 window.onload = init;

@@ -49,7 +49,7 @@ function init() {
         .attr("y", function (d) {
             return yScale(d) - 5; // Adjusted the vertical position
         })
-        .attr("text-anchor", "middle")
+        .attr("text-anchor", "middle") //
         .attr("font-size", "12px")
         .attr("fill", "purple");
 
