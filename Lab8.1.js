@@ -1,7 +1,7 @@
 function init(){
     var w = 500;
     var h = 300;
-    
+
     var projection = d3.geoMercator()
                         .center([145,-36.5])
                         .translate([w/2,h/2]) // move to the center
@@ -14,7 +14,7 @@ function init(){
                 .append("svg")
                 .attr("width",w)
                 .attr("height",h)
-                .attr("fill","grey");
+                .attr("fill","black");
 
     d3.json("LGA_VIC.json").then(function(json){ //use json to to get coordinates of the map
         svg.selectAll("path")
