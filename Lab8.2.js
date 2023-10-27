@@ -16,8 +16,8 @@ function init(){
                 .attr("fill","black");
 
     var colour = d3.scaleQuantize() //colour scheme
-    // .range(["rgb(237,248,233)", "rgb(186,228,179)", "rgb(116,196,118)", "rgb(49,163,84)", "rgb(0,109,44)"]);
-     .range(["#fbb4b9","#f768a1","#c51b8a","#7a0177"])
+    //   .range(["#ffffb2","#fecc5c","#fd8d3c","#f03b20", "#bd0026"]) 
+       .range(["#fbb4b9","#d7b5d8","#df65b0","#dd1c77", "#980043"])
 
     
     d3.csv("VIC_LGA_unemployment.csv").then(function(data){   //read data from csv file
@@ -73,7 +73,7 @@ function init(){
                     })
                     .attr("r",5)
                     .style("fill", "yellow")
-                    .style("stroke", "gray") 
+                    .style("stroke", "grey") 
                     .style("stroke-width", 0.25) 
                     .style("opacity", 0.75) 
                     .append("title") //Simple tooltip 
@@ -87,14 +87,14 @@ function init(){
                     text.enter() //update the text
                         .append("text")
                         .attr("x",function(d){
-                            return projection([d.lon,d.lat])[0];
+                        return projection([d.lon,d.lat])[0];
                         })
                         .attr("y",function(d){
                             return projection([d.lon, d.lat])[1] ;
                         })
-                        .text(function(d){
-                            return d.place;
-                        });
+                       .text(function(d){
+                           return d.place;
+                       });
         })  
     })
 })
