@@ -81,13 +81,15 @@ function init() {
 
         //Add some annotation
         svg.append("line")
-            .attr("class", "line halfMilMark")
-        //start of line
-        .attr("x1" , padding)
-        .attr("y1", yScale(500000))
-        //end of line
-        .attr("x2", w)
-        .attr("y2", yScale(500000));
+        .attr("class", "line halfMilMark")
+        //start of the line
+        .attr("x1", padding)         
+        .attr("y1", yScale(500000))    
+        //end of the line
+        .attr("x2", w)                
+        .attr("y2", yScale(500000))    
+        .attr("stroke", "red")     
+        .style("stroke-dasharray", "4,4");
         
 
         svg.append("text")
