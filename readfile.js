@@ -1,5 +1,3 @@
-function init(){
-
 const csvTable = document.getElementById("csvTable");
 
 // Specify the file name you want to read
@@ -40,5 +38,3 @@ fetch(csvFileName)
   .catch((error) => {
     console.error(error);
   });
-j
-}window.onload = init
